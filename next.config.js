@@ -1,5 +1,30 @@
+const path = require("path");
+const Dotenv = require("dotenv-webpack");
+const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+
 module.exports = {
-  prerenderPages: false,
+  webpack: config => {
+    config.plugins.push(
+      new Dotenv({
+        path: path.join(__dirname, ".env"),
+        systemvars: true
+      })
+    );
+    config.plugins.push(
+      new SWPrecacheWebpackPlugin({
+        verbose: true,
+        staticFileGlobsIgnorePatterns: [/\.next\//],
+        runtimeCaching: [
+          {
+            handler: "networkFirst",
+            urlPattern: /^https?.*/
+          }
+        ]
+      })
+    );
+
+    return config;
+  },
   publicRuntimeConfig: {
     localeSubpaths:
       typeof process.env.LOCALE_SUBPATHS === "string"
