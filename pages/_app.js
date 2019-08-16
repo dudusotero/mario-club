@@ -1,7 +1,14 @@
 import App from "next/app";
 import Head from "next/head";
+import { ThemeProvider } from "styled-components";
 
 import Layout from "../components/Layout";
+
+const theme = {
+  colors: {
+    primary: "#0070f3"
+  }
+};
 
 class MyApp extends App {
   render() {
@@ -65,13 +72,14 @@ class MyApp extends App {
           />
 
           <link rel="stylesheet" type="text/css" href="/static/normalize.css" />
-          <link rel="stylesheet" type="text/css" href="/static/styles.css" />
 
           <title>Mario Club</title>
         </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
       </>
     );
   }

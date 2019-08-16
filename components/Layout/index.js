@@ -1,13 +1,15 @@
 import React from "react";
 import Link from "next/link";
 
+import { Header, Logo, MainContainer, Footer } from "./styles";
+
 export default function Layout({ children }) {
   return (
     <>
-      <header>
+      <Header>
         <Link href="/">
           <a title="Go to home page">
-            <img className="logo" src="/static/logo.png" alt="Site logo" />
+            <Logo src="/static/logo.png" alt="Site logo" />
           </a>
         </Link>
         <nav>
@@ -34,11 +36,11 @@ export default function Layout({ children }) {
             </li>
           </ul>
         </nav>
-      </header>
+      </Header>
 
-      <main className="main-container">{children}</main>
+      <MainContainer>{children}</MainContainer>
 
-      <footer>
+      <Footer>
         <ul>
           <li>
             <Link href="/batman">
@@ -61,7 +63,7 @@ export default function Layout({ children }) {
             </Link>
           </li>
         </ul>
-      </footer>
+      </Footer>
     </>
   );
 }
