@@ -1,6 +1,7 @@
 import App from "next/app";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
+import { appWithTranslation } from "../i18n";
 
 import Layout from "../components/Layout";
 
@@ -85,4 +86,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

@@ -1,9 +1,19 @@
-export default function Home() {
+import { i18n, withTranslation } from "../i18n";
+
+function Home({ t }) {
   return (
     <>
       <main>
         <article>
-          <h1>Main article heading</h1>
+          <h1>{t("h1")}</h1>
+          <button
+            type="button"
+            onClick={() =>
+              i18n.changeLanguage(i18n.language === "en" ? "de" : "en")
+            }
+          >
+            {t("change-locale")}
+          </button>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae sunt
             igitur communia vobis cum antiquis, iis sic utamur quasi concessis;
@@ -75,3 +85,9 @@ export default function Home() {
     </>
   );
 }
+
+Home.getInitialProps = async () => ({
+  namespacesRequired: ["common"]
+});
+
+export default withTranslation("common")(Home);
